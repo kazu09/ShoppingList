@@ -13,8 +13,8 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator initialRouteName="List">
           <Stack.Screen name="List" component={ListScreen} options={{ headerShown: false }}/>
-          <Stack.Screen name="Detail" component={DetailScreen} />
-          <Stack.Screen name="Create" component={CreateScreen} />
+          <Stack.Screen name="商品の更新" component={DetailScreen} />
+          <Stack.Screen name="商品リスト作成" component={CreateScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>
