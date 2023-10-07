@@ -1,16 +1,21 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect, FC } from 'react';
 import { StyleSheet, TextInput, Text, View, Alert } from 'react-native';
 
-const Amount = () => {
-  const [text, setText] = useState('');
-  const [backgroundColor, setBackgroundColor] = useState('#CCFFFF');
+interface AmountProps {
+  onTextChange: (text: string) => void;
+}
+
+const Amount: FC<AmountProps> = ({ onTextChange }) => {
+  const [text, setText] = useState<string>('');
+  const [backgroundColor, setBackgroundColor] = useState<string>('#CCFFFF');
 
   useEffect(() => {
     // 文字数が20文字以上なら背景色を赤にする
     setBackgroundColor(text.length >= 8 ? 'red' : '#CCFFFF');
-  }, [text]);
+  }, [text, onTextChange]);
 
   const amountTextChange = (value: string) => {
+    onTextChange(value)
     // 数値のみで構成されているか確認
     if (/^\d*$/.test(value)) {
       setText(value);

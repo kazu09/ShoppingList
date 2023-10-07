@@ -1,11 +1,17 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect, FC } from 'react';
 import { StyleSheet, TextInput, Text, View } from 'react-native';
 
-const Remarks = () => {
+interface RemarksProps {
+  onTextChange: (text: string) => void;
+}
+
+
+const Remarks: FC<RemarksProps> = ({ onTextChange }) => {
   const [text, setText] = useState('');
   const [backgroundColor, setBackgroundColor] = useState('#CCFFFF');
 
   useEffect(() => {
+    onTextChange(text)
     // 文字数が100文字以上なら背景色を赤にする
     setBackgroundColor(text.length >= 100 ? 'red' : '#CCFFFF');
   }, [text]);

@@ -1,14 +1,18 @@
-import React from 'react';
 import { View, StyleSheet, TouchableOpacity, Text } from 'react-native';
 
-const UpdateButton = () => {
+interface UpdateButtonProps {
+  onUpdate: () => void;
+  onDelete: () => void;
+}
+
+const UpdateButton: React.FC<UpdateButtonProps> = ({ onUpdate, onDelete }) => {
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={[styles.button,{marginLeft:20}]} onPress={() => {}}>
+      <TouchableOpacity style={[styles.button,{marginLeft:20}]} onPress={onUpdate}>
         <Text style={styles.text}>更新</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={[styles.button,{marginRight:20}]} onPress={() => {}}>
+      <TouchableOpacity style={[styles.button,{marginRight:20}]} onPress={onDelete}>
         <Text style={styles.text}>削除</Text>
       </TouchableOpacity>
     </View>
