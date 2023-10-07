@@ -1,14 +1,19 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect, FC } from 'react';
 import { StyleSheet, TextInput, Text, View } from 'react-native';
 
-const ProductName = () => {
-  const [text, setText] = useState('');
-  const [backgroundColor, setBackgroundColor] = useState('#CCFFFF');
+interface ProductNameProps {
+  onTextChange: (text: string) => void;
+}
+
+const ProductName: FC<ProductNameProps> = ({ onTextChange }) => {
+  const [text, setText] = useState<string>('');
+  const [backgroundColor, setBackgroundColor] = useState<string>('#CCFFFF');
 
   useEffect(() => {
+    onTextChange(text)
     // 文字数が20文字以上なら背景色を赤にする
     setBackgroundColor(text.length >= 20 ? 'red' : '#CCFFFF');
-  }, [text]);
+  }, [text, onTextChange]);
 
   return (
     <View style={[styles.container, {backgroundColor}]}>

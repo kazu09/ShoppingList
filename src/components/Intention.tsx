@@ -1,10 +1,15 @@
-import React, {useState} from 'react'
-import { Picker } from '@react-native-picker/picker';
+import React, { useState, useEffect, FC } from 'react';import { Picker } from '@react-native-picker/picker';
 import { StyleSheet, Text, View } from 'react-native';
-
-const Intention = () => {
+interface IntentionProps {
+  onValueChange: (text: string) => void;
+}
+const Intention : FC<IntentionProps> = ({ onValueChange }) => {
   const [selectedValue, setSelectedValue] = useState('');
 
+  useEffect(() => {
+    onValueChange(selectedValue)
+  }, [onValueChange]);
+  
   return (
     <View style={styles.container}>
       <Text style={styles.label}>商品の要・不要 :</Text>
