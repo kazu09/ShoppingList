@@ -1,3 +1,9 @@
+/**
+ * NonVolatileUtils.tsx
+ * ShoppingList 
+ *
+ * Copyright © 2023年 kazu. All rights reserved.
+ */
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 interface Item {

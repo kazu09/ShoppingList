@@ -1,3 +1,9 @@
+/**
+ * Intention.tsx
+ * ShoppingList 
+ *
+ * Copyright © 2023年 kazu. All rights reserved.
+ */
 import React, { useState, useEffect, FC } from 'react';import { Picker } from '@react-native-picker/picker';
 import { StyleSheet, Text, View } from 'react-native';
 interface IntentionProps {

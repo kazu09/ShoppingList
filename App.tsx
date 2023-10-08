@@ -1,3 +1,9 @@
+/**
+ * App.tsx
+ * ShoppingList 
+ *
+ * Copyright © 2023年 kazu. All rights reserved.
+ */
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';

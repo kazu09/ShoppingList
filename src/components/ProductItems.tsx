@@ -1,3 +1,9 @@
+/**
+ * ProductItems.tsx
+ * ShoppingList 
+ *
+ * Copyright © 2023年 kazu. All rights reserved.
+ */
 import React from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, FlatList } from 'react-native';
 import { Item } from '../utils/NonVolatileUtils';

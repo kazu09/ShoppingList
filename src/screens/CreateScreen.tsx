@@ -1,3 +1,9 @@
+/**
+ * CreateScreen.tsx
+ * ShoppingList 
+ *
+ * Copyright © 2023年 kazu. All rights reserved.
+ */
 import React, { useState } from 'react'
 import { StyleSheet, View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';

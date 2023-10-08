@@ -1,3 +1,9 @@
+/**
+ * ListScreen.tsx
+ * ShoppingList 
+ *
+ * Copyright © 2023年 kazu. All rights reserved.
+ */
 import React, { useState, useCallback } from 'react'
 import { ListScreenProps } from '../navigation';
 import { SafeAreaView } from 'react-native-safe-area-context';

@@ -1,3 +1,9 @@
+/**
+ * UpdateButton.tsx
+ * ShoppingList 
+ *
+ * Copyright © 2023年 kazu. All rights reserved.
+ */
 import { View, StyleSheet, TouchableOpacity, Text } from 'react-native';
 
 interface UpdateButtonProps {

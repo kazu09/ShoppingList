@@ -1,3 +1,10 @@
+/**
+ * Amount.tsx
+ * ShoppingList 
+ *
+ * Copyright © 2023年 kazu. All rights reserved.
+ */
+
 import React, { useState, useEffect, FC } from 'react';
 import { StyleSheet, TextInput, Text, View, Alert } from 'react-native';
 

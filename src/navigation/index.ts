@@ -1,3 +1,9 @@
+/**
+ * intex.ts
+ * ShoppingList 
+ *
+ * Copyright © 2023年 kazu. All rights reserved.
+ */
 import { StackScreenProps } from '@react-navigation/stack';
 
 export { default as ListScreen } from '../screens/ListScreen';
