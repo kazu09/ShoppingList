@@ -6,7 +6,6 @@ interface CreateItemsProps {
 }
 
 const CreateList: React.FC<CreateItemsProps> = ({createListButton}) => {
-  
   return (
     <TouchableOpacity style={styles.navBar} onPress={createListButton} >
         <View style={styles.leftContainer}>

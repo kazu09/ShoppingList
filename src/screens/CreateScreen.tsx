@@ -36,7 +36,7 @@ export default function CreateScreen({ navigation }: any) {
     setRemarks(text);
   };
 
-  const createListButton = () => {
+  const createListButton = async () => {
     const itemData: Item = {
         itemName: productName,
         amount: amount,
@@ -52,9 +52,10 @@ export default function CreateScreen({ navigation }: any) {
         console.error('Error saving data:', e);
       }
     };
-    saveItem();
+    await saveItem();
     navigation.goBack()
   }
+  
   return (
     <View style={styles.mainContainer}>
       <KeyboardAwareScrollView

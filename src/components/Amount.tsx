@@ -3,10 +3,11 @@ import { StyleSheet, TextInput, Text, View, Alert } from 'react-native';
 
 interface AmountProps {
   onTextChange: (text: string) => void;
+  value?: string;
 }
 
-const Amount: FC<AmountProps> = ({ onTextChange }) => {
-  const [text, setText] = useState<string>('');
+const Amount: FC<AmountProps> = ({ onTextChange, value='' }) => {
+  const [text, setText] = useState<string>(value);
   const [backgroundColor, setBackgroundColor] = useState<string>('#CCFFFF');
 
   useEffect(() => {

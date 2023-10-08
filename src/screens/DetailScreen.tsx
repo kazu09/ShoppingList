@@ -8,8 +8,13 @@ import Intention from '../components/Intention';
 import Remarks from '../components/Remarks';
 import UpdateButton from '../components/UpdateButton';
 import {updateItem, removeItem, Item} from '../utils/NonVolatileUtils';
+import { StackScreenProps } from '@react-navigation/stack';
+import { RootStackParamList } from '../navigation';
 
-export default function DetailScreen({ navigation }: any) {
+type DetailScreenProps = StackScreenProps<RootStackParamList, '商品の更新'>;
+
+export default function DetailScreen({ navigation, route }: DetailScreenProps) {
+  const { item } = route.params;
   const [productName, setProductName] = useState<string>('');
   const [amount, setAmount] = useState<string>('');
   const [itemDescription, setitemDescription] = useState<string>('');
@@ -36,10 +41,9 @@ export default function DetailScreen({ navigation }: any) {
     setRemarks(text);
   };
 
-  const handleUpdate = () => {
+  const handleUpdate = async () => {
     // 更新するid
-    // ToDo 更新値を固定値ではないように対応
-    const updateId = "0"
+    const updateId = item.id
     const updateItemData: Item = {
       itemName: productName,
       amount: amount,
@@ -48,23 +52,24 @@ export default function DetailScreen({ navigation }: any) {
       remarks: remarks
     };
 
-    updateItem(updateId, updateItemData).then(() => {
+    await updateItem(updateId, updateItemData).then(() => {
       console.info("Item updated success");
     }).catch((e) => {
       console.error("Error updating item:", e);
     });
+    // 画面を戻す
     navigation.goBack()
   };
 
-  const handleDelete = () => {
+  const handleDelete = async () => {
     // 削除するid
-    // ToDo 更新値を固定値ではないように対応
-    const deleteId = "1"
-    removeItem(deleteId).then(() => {
+    const deleteId = item.id
+    await removeItem(deleteId).then(() => {
       console.info("Item delete success");
     }).catch((e) => {
       console.error("Error Delete item:", e);
     })
+    // 画面を戻す
     navigation.goBack()
   };
 
@@ -74,11 +79,11 @@ export default function DetailScreen({ navigation }: any) {
         style={styles.scrollView}
         contentContainerStyle={styles.contentContainer}>
         <View style={styles.inputContainer}>
-        <ProductName onTextChange={handleProductName} />
-          <Amount onTextChange={handleAmount} />
-          <ItemDescription onTextChange={handleItemDescription}/>
-          <Intention onValueChange={handleIntention}/>
-          <Remarks onTextChange={handleRemarks}/>
+        <ProductName value={item.itemName} onTextChange={handleProductName} />
+          <Amount value={item.amount} onTextChange={handleAmount} />
+          <ItemDescription value={item.itemDescription} onTextChange={handleItemDescription}/>
+          <Intention value={item.intention} onValueChange={handleIntention}/>
+          <Remarks value={item.remarks} onTextChange={handleRemarks}/>
         </View>
       </KeyboardAwareScrollView>
       <View style={styles.buttonContainer}>

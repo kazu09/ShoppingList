@@ -9,10 +9,10 @@ const SaveButton: React.FC<CreateItemsProps> = ({createListButton}) => {
   
   return (
     <TouchableOpacity style={styles.navBar} onPress={createListButton} >
-        <Text style={[styles.font]}>
-          {'保存する'}
-        </Text>
-      </TouchableOpacity>
+      <Text style={[styles.font]}>
+        {'保存する'}
+      </Text>
+    </TouchableOpacity>
   );
 };
 

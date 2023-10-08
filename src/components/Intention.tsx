@@ -2,9 +2,10 @@ import React, { useState, useEffect, FC } from 'react';import { Picker } from '@
 import { StyleSheet, Text, View } from 'react-native';
 interface IntentionProps {
   onValueChange: (text: string) => void;
+  value?: string;
 }
-const Intention : FC<IntentionProps> = ({ onValueChange }) => {
-  const [selectedValue, setSelectedValue] = useState('');
+const Intention : FC<IntentionProps> = ({ onValueChange, value='' }) => {
+  const [selectedValue, setSelectedValue] = useState(value);
 
   useEffect(() => {
     onValueChange(selectedValue)
