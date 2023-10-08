@@ -31,6 +31,7 @@ const saveItem = async (item: ShopItem): Promise<void>=> {
  */
 const getItems = async (): Promise<ShopItem | null> => {
   try {
+    console.info("------> get storage Items")
     const item = await AsyncStorage.getItem('shoppingList')
     return item ? (JSON.parse(item) as ShopItem) : null;
   } catch(e) {
@@ -64,7 +65,7 @@ const removeItem = async (removeItemId: string): Promise<void> => {
       console.info("remove success");
     }
   } catch (e) {
-    console.error(e);
+    console.error("Error remove Item",e);
   }
 }
 
@@ -105,7 +106,7 @@ const addItem = async (newItem: Item): Promise<void> => {
     await saveItem(updatedItem);
     console.info("add item success")
   } catch (e) {
-    console.error(e);
+    console.error("Error not add item",e);
   }
 };
 
@@ -151,7 +152,6 @@ const getItemCount = async (): Promise<number> => {
 export {
   getItems,
   removeItem,
-  getItemCount,
   addItem,
   getShopItem,
   updateItem,

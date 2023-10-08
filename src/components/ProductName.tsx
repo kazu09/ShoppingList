@@ -3,10 +3,11 @@ import { StyleSheet, TextInput, Text, View } from 'react-native';
 
 interface ProductNameProps {
   onTextChange: (text: string) => void;
+  value?: string;
 }
 
-const ProductName: FC<ProductNameProps> = ({ onTextChange }) => {
-  const [text, setText] = useState<string>('');
+const ProductName: FC<ProductNameProps> = ({ onTextChange, value='' }) => {
+  const [text, setText] = useState<string>(value);
   const [backgroundColor, setBackgroundColor] = useState<string>('#CCFFFF');
 
   useEffect(() => {

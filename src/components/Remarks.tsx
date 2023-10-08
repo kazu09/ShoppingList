@@ -3,11 +3,11 @@ import { StyleSheet, TextInput, Text, View } from 'react-native';
 
 interface RemarksProps {
   onTextChange: (text: string) => void;
+  value?: string;
 }
 
-
-const Remarks: FC<RemarksProps> = ({ onTextChange }) => {
-  const [text, setText] = useState('');
+const Remarks: FC<RemarksProps> = ({ onTextChange, value='' }) => {
+  const [text, setText] = useState(value);
   const [backgroundColor, setBackgroundColor] = useState('#CCFFFF');
 
   useEffect(() => {

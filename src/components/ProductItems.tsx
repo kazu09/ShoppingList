@@ -1,36 +1,42 @@
 import React from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, FlatList } from 'react-native';
+import { Item } from '../utils/NonVolatileUtils';
+interface ItemWithId extends Item {
+  id: string;
+}
 
 interface ProductItemProps {
-  item: {
-    id: string;
-    productName: string;
-  };
+  item: ItemWithId;
 }
 
 interface ProductItemsProps {
-  data: ProductItemProps['item'][];
-  handleAddButton: () => void;
+  data: ItemWithId[];
+  handleAddButton: (item: ItemWithId) => void;
 }
 
 const ProductItems: React.FC<ProductItemsProps> = ({ data, handleAddButton }) => {
   const ProductItem = ({ item }: ProductItemProps) => (
-    <TouchableOpacity style={styles.navBar} onPress={handleAddButton}>
+    <TouchableOpacity style={styles.navBar} onPress={() => handleAddButton(item)}>
         <View style={styles.leftContainer}>
           <Text style={[styles.font]}>
             {'<'}
           </Text>
         </View>
         <Text style={[styles.font]}>
-          {item.productName}
+          {item.itemName}
         </Text>
       </TouchableOpacity>
   );
   
+    // FlatListの各アイテムレンダリング時に実行される関数
+    const renderItem = ({ item }: { item: ItemWithId }) => {
+    return <ProductItem item={item} />;
+  };
+
   return (
     <FlatList
       data={data}
-      renderItem={ProductItem}
+      renderItem={renderItem}
       keyExtractor={(item) => item.id}
     />
   );

@@ -1,19 +1,44 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import { ListScreenProps } from '../navigation';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useFocusEffect } from '@react-navigation/native';
 import ProductItems from '../components/ProductItems'
 import CreateList from '../components/CreateList';
+import { getItems } from '../utils/NonVolatileUtils';
+import { Item } from '../utils/NonVolatileUtils';
+
+interface ItemWithId extends Item {
+  id: string;
+}
 
 const ListScreen = ({ navigation }: ListScreenProps) => {
-  const [product, setProduct] = useState([{ id: '0', productName: '商品番号 0' }]);
 
-  const handleAddButton = () => {
-    // 商品の配列を追加する
-    const addProductId = product.length.toString();
-    const newProduct = { id: addProductId, productName: `商品番号 ${addProductId}` };
-    setProduct([...product, newProduct]);
-    // 更新画面に遷移する
-    navigation.navigate('商品の更新');
+  const [product, setProduct] = useState<ItemWithId[]>([]); // 初期値を空配列に
+  useFocusEffect(
+    useCallback(() => {
+      itemState();
+    }, [])
+  );
+
+  const itemState = async () => {
+    try {
+      const newProductObj = await getItems();  // ストレージからオブジェクトを取得
+      if (newProductObj) {
+        // オブジェクトを配列に変換
+        const newProductArr = Object.keys(newProductObj).map((key) => ({
+          id: key,  // 追加：各アイテムにIDを持たせる
+          ...newProductObj[key]
+        }));
+        setProduct(newProductArr);  // ステートを更新
+      }
+    } catch (e) {
+      console.error('Error fetching data:', e);
+    }
+  };
+
+  const handleAddButton = async (item: ItemWithId) => {
+    await itemState();
+    navigation.navigate('商品の更新', { item });
   };
 
   const createListButton = () => {
